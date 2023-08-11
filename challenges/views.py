@@ -11,7 +11,7 @@ monthly_challenges_dic = {
     "may":"05",
     "june":"06",
     "july":"07",
-    "august":"08",
+    "august":"This is a branch test 11/08/2023!",
     "september":"09",
     "october":"010",
     "november":"011",
