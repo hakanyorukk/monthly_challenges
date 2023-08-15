@@ -7,16 +7,21 @@
 {% endblock %}
 
 {% block page_title %}
-  {{month_name|title}} Challenge
+  {{months|title}} Challenge
 {% endblock %}
 
 {% block content %}
   {% include "challenges/includes/header.html" %}
-  
-  <h1>This {{ month_name|title }}'s challenge</h1>
-  {% if text is not None%}
-    <h2>{{ text }}</h2>
-  {% else %}
-    <p class="fallback">There is no challenge for this month yet!</p>
-  {% endif %}
+  <h1>This's challenge</h1>
+<!--
+  <div class="accepted-challenge">
+    <form action="{% url "challenges"%}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="challenge_id" value="{{challenge.id}}">
+      <button>
+          Accept this challenge
+      </button>
+    </form>
+  </div>
+-->
 {% endblock %}

@@ -1,54 +1,48 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.template.loader import render_to_string
+from django.views import View
+from django.http import HttpResponseRedirect
+from .models import Months, Challenges
+from django.views.generic import ListView, DetailView
 
-monthly_challenges_dic = {
-    "january": "01",
-    "february":"02",
-    "march":"03",
-    "april":"04",
-    "may":"05",
-    "june":"06",
-    "july":"07",
-    "august":"This is a branch test 11/08/2023!",
-    "september":"09",
-    "october":"010",
-    "november":"011",
-    "december":None
-}
 # Create your views here.
+class StartingPageView(ListView):
+    model = Months
+    template_name = "challenges/index.html"
+    context_object_name = "months"
 
-def index(request):
-    months = list(monthly_challenges_dic.keys())
+class MonthlyChallenge(DetailView):
+    model = Challenges
+    template_name = "challenges/challenge.html"
+    context_object_name = "challenges"  
 
-    return render(request, "challenges/index.html", {
-        "months":months
-    })
+# class AcceptedChallenges(View):
+#     def get(self,request):
+#         accepted_challenges = request.session.get("accepted_challenges")
+#         context = {}
 
-def monthly_challenge_by_number(request, month):
-    months = list(monthly_challenges_dic.keys())
+#         if accepted_challenges is None or len(accepted_challenges) == 0:
+#             context["accepts"] = 0
+#             context["has_challenge"] = False
+#         else:
 
-    if month > len(months):
-        return HttpResponseNotFound("Invalid month")
-    
-    redirect_month = months[month-1]
-    redirect_path = reverse(monthly_challenge, args=[redirect_month])
-    return HttpResponseRedirect(redirect_path)
+#             context["has_challenge"] = True
+#             print("accepted_challenges:", accepted_challenges)
 
+#         return render(request,"challenges/accepted-challenges.html", context)
 
+#     def post(self,request):
+#         accepted_challenges = request.session.get("accepted_challenges")
+#         if accepted_challenges is None:
+#             accepted_challenges = []
 
-def monthly_challenge(request, month):
-    try:
-        challenge_text = monthly_challenges_dic[month]
-
-        return render(request, "challenges/challenge.html", {
-            "text": challenge_text,
-            "month_name": month
-        })
-    
-    except:
-        response_data = render_to_string("404.html")
-        return HttpResponseNotFound(response_data)
-
-
+#         accept_id = request.POST["challenge_id"]
+#         if accept_id not in accepted_challenges:
+#             accepted_challenges.append(accept_id)
+#         else: 
+#             accepted_challenges.remove(accept_id)
+#         request.session["accepted_challenges"] = accepted_challenges
+#         return HttpResponseRedirect("/")
+  
