@@ -1,9 +1,9 @@
 from django.urls import path
 
 from.import views
+from .views import DetailView
 
 urlpatterns = [
     path("", views.StartingPageView.as_view(), name="index"), #starting page
-    path("/month/<slug>", views.MonthlyChallenge.as_view(), name="month_challenge") #reverse functions,#urltags, dynamic url
-    #path("accepted/challenges", views.AcceptedChallenges.as_view(), name="challenges")
+    path("months/<int:pk>", views.MonthlyChallengeDetailView.as_view(), name="month_challenge")
 ]

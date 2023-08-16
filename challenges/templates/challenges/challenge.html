@@ -12,10 +12,6 @@
 
 {% block content %}
   {% include "challenges/includes/header.html" %} 
-  <h1>This {{ post|title }}'s challenge</h1>
-  {% if monthlychallenges is not None%}
-    <h2>{{ post}}</h2>
-  {% else %}
-    <p class="fallback">There is no challenge for this month yet!</p>
-  {% endif %}
+  <h1>This is {{ object }}'s challenge</h1>
+  <h2>{{ object.challenge}}</h2>
 {% endblock %}
