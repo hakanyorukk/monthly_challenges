@@ -1,27 +1,21 @@
-{% extends "base.html "%}
+{% extends "base.html" %}
 {% load static %}
+
+{% block page_title %}
+  Month Challenge
+{% endblock %}
 
 {% block css_files %}
   <link rel="stylesheet" href="{% static "challenges/challenge.css" %}">
   <link rel="stylesheet" href="{% static "challenges/includes/header.css" %}">
 {% endblock %}
 
-{% block page_title %}
-  {{months|title}} Challenge
-{% endblock %}
-
 {% block content %}
-  {% include "challenges/includes/header.html" %}
-  <h1>This's challenge</h1>
-<!--
-  <div class="accepted-challenge">
-    <form action="{% url "challenges"%}" method="POST">
-      {% csrf_token %}
-      <input type="hidden" name="challenge_id" value="{{challenge.id}}">
-      <button>
-          Accept this challenge
-      </button>
-    </form>
-  </div>
--->
+  {% include "challenges/includes/header.html" %} 
+  <h1>This {{ post|title }}'s challenge</h1>
+  {% if monthlychallenges is not None%}
+    <h2>{{ post}}</h2>
+  {% else %}
+    <p class="fallback">There is no challenge for this month yet!</p>
+  {% endif %}
 {% endblock %}

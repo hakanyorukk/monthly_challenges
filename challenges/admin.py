@@ -5,7 +5,7 @@ from django.contrib import admin
 from .models import Months, Challenges
 
 class MonthAdmin(admin.ModelAdmin):
-    list_diplay = ("month", "slug")
+    list_diplay = ("month_name", "slug")
 
 admin.site.register(Months, MonthAdmin)
 admin.site.register(Challenges)
