@@ -6,6 +6,7 @@ from django.views import View
 from django.http import HttpResponseRedirect
 from .models import Months, Challenges
 from django.views.generic import ListView, DetailView, TemplateView
+from django.contrib.sessions.models import Session
 
 class StartingPageView(ListView):
     model = Months
@@ -15,10 +16,11 @@ class StartingPageView(ListView):
 class MonthlyChallengeDetailView(DetailView):
     template_name = "challenges/challenge.html"
     model = Months
+    context_object_name="month"
 
 class AcceptChallenge(View):
-    def get(self,requset):
-        accepted_challenges = requset.session.get("accepted_challenges")
+    def get(self,request):
+        accepted_challenges = request.session.get("accepted_challenges")
         context = {}
 
         if accepted_challenges is None:
@@ -29,24 +31,19 @@ class AcceptChallenge(View):
             accepts = Months.objects.filter(id__in=accepted_challenges)
             context["accepts"] = accepts
             context["has_accept"] = True
-        return render(requset, "", context)
+        return render(request, "challenges/accept-challenge.html", context)
 
 
-    def post(self,requset):
-        accepted_challenges = requset.session.get("accepted_challenges")
+    def post(self,request):
+        accepted_challenges = request.session.get("accepted_challenges")
 
         if accepted_challenges is None:
             accepted_challenges = []
         
-        accept_id = requset.POST["accept_id"]
+        month_id = int(request.POST["month_id"])
+        if month_id not in accepted_challenges:
+            accepted_challenges.append(month_id)
+            print(month_id)
 
-        if accept_id not in accepted_challenges:
-            print(accept_id)
-            print(accepted_challenges)
-            accepted_challenges.append(accept_id)
-
-        else:
-            accepted_challenges.remove(accept_id)
-
-        requset.session["accepted_challenges"] = accepted_challenges
+        request.session["accepted_challenges"] = accepted_challenges
         return HttpResponseRedirect("/")

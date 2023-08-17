@@ -12,9 +12,10 @@
 
 {% block content %}
 {% include "challenges/includes/header.html" %}
+  {% if not has_accept %}
+    <p>You didn't save any post!</p>
+  {% endif %}
   <ul>
-    {% for accept in accepts %}
-      <li><a href="{% url "month_challenge" month.id %}">{{month|title }}</a></li>
-    {% endfor %}
+    <li><a href="{% url "accept-challenge" accepts.id %}">{{ accepts.title }}</a></li>
   </ul>
 {% endblock %}
