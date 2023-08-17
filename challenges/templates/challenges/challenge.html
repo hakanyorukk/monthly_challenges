@@ -14,4 +14,14 @@
   {% include "challenges/includes/header.html" %} 
   <h1>This is {{ object }}'s challenge</h1>
   <h2>{{ object.challenge}}</h2>
+
+  <div>
+    <form action="{% url "accept-challenge" %}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="accept_id" value={{accept.id}}>
+      <button>
+        Accept challenge
+      </button>
+    </form>
+  </div>
 {% endblock %}

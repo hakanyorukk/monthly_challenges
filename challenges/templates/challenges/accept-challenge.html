@@ -2,20 +2,19 @@
 {% load static %}
 
 {% block page_title %}
-  All Challenges
+  Acceted Challenges
 {% endblock %}
 
 {% block css_files %}
-  <link rel="stylesheet" href="{% static "challenges/challenges.css" %}">    
+    <link rel="stylesheet" href="{% static "challenges/challenges.css" %}">    
   <link rel="stylesheet" href="{% static "challenges/includes/header.css" %}">
 {% endblock %}
 
 {% block content %}
 {% include "challenges/includes/header.html" %}
   <ul>
-    {% for month in months %}
+    {% for accept in accepts %}
       <li><a href="{% url "month_challenge" month.id %}">{{month|title }}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}
-
