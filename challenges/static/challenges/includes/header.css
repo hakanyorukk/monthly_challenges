@@ -1,25 +1,42 @@
-header {
+#main-navigation {
     width:100%;
     height: 5rem;
     background-color: #353535;
 }
 
-header nav{
+#main-navigation nav{
     width:100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-header nav a {
+#main-navigation h1 a{
     color:white;
     font-size: 2rem;
     font-weight: bold;
     text-decoration: none;
+    margin-right:6rem;
+    border-radius: 10px;
+    background-color: #353535;
+    padding: 7px 15px;
 }
 
-header nav a:active,
-header nav a:hover{
-    color:purple;
+#main-navigation h2 a{
+    color:white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 6rem;
+    padding: 7px 15px;
+    border-radius: 10px;
+}
+
+#main-navigation h1 a:active,
+#main-navigation h1 a:hover,
+#main-navigation h2 a:active,
+#main-navigation h2 a:hover {
+    color: white;
+    background-color: rgb(36, 220, 220);
+    transition-delay: 0.2s;
 }

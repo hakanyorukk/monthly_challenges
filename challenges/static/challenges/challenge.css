@@ -22,3 +22,30 @@ h2{
     font-size: bold;
     font-size: 2rem;
 }
+
+.accept-challenge {
+    border-radius: 8px;
+    margin: 5rem auto;
+    display: flex; /* Corrected typo here */
+    justify-content: center;
+    align-items: center;
+}
+
+.accept-challenge button {
+    cursor: pointer;
+    padding: 1rem 2rem;
+    font: inherit;
+    border-radius: 10px;
+    background-color: white;
+    display: flex; /* Corrected typo here */
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.accept-challenge button:hover,
+.accept-challenge button:active {
+    color: white;
+    background-color: rgb(36, 220, 220);
+}

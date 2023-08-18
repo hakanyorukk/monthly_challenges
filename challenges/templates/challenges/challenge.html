@@ -15,7 +15,7 @@
   <h1>This is {{ month }}'s challenge</h1>
   <h2>{{ month.challenge }}</h2>
 
-  <div>
+  <div class="accept-challenge">
     <form action="{% url "accept-challenge" %}" method="POST">
       {% csrf_token %}
       <input type="hidden" name="month_id" value="{{ month.id }}" required>
