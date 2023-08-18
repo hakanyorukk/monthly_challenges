@@ -6,16 +6,21 @@
 {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "challenges/challenges.css" %}">    
+  <link rel="stylesheet" href="{% static "challenges/challenges.css" %}">    
   <link rel="stylesheet" href="{% static "challenges/includes/header.css" %}">
 {% endblock %}
 
 {% block content %}
 {% include "challenges/includes/header.html" %}
-  {% if not has_accept %}
+
+<section id="stored-posts">
+  {% if not "has_accept" %}
     <p>You didn't save any post!</p>
   {% endif %}
   <ul>
-    <li><a href="{% url "accept-challenge" accepts.id %}">{{ accepts.title }}</a></li>
+    {% for month in months %}
+      <li><a href="{% url "month_challenge" month.slug %}">{{ month.month_name }}</a></li>
+    {% endfor %}
   </ul>
+</section>
 {% endblock %}

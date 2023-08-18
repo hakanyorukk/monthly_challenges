@@ -20,7 +20,11 @@
       {% csrf_token %}
       <input type="hidden" name="month_id" value="{{ month.id }}" required>
       <button type="submit">
-        Accept challenge
+        {% if not save_challenge %}
+          Accept challenge
+        {% else %}
+          Give up from this challenge!
+        {% endif %}
       </button>
     </form>
   </div>
