@@ -28,4 +28,25 @@
       </button>
     </form>
   </div>
+
+  <section id="notes">
+    <ul>
+      {% for note in notes %}
+      <li>
+        <h2>{{ note.title }}</h2>
+        <p>{{ note.text|linebreaks }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section id="add-note">
+    <h2>Your Note</h2> 
+    <form action="{% url "month_challenge" month.slug %}" method="POST">
+      {% csrf_token %}
+        <div>
+        {{ note_form.as_p }}
+        </div>
+      <button type="submit">Add note</button>
+    </section>
 {% endblock %}
