@@ -33,4 +33,5 @@ class Note(models.Model):
     date = models.DateField(auto_now=True)
     month = models.ForeignKey(Months, on_delete=models.CASCADE, related_name="notes", blank=True)
 
-
+    def delete_note1(self):
+        self.delete()

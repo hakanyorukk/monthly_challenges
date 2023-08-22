@@ -16,7 +16,7 @@
   <h2>{{ month.challenge }}</h2>
 
   <div class="accept-challenge">
-    <form action="{% url "accept-challenge" %}" method="POST">
+    <form action="{% url "accept-challenge"%}" method="POST">
       {% csrf_token %}
       <input type="hidden" name="month_id" value="{{ month.id }}" required>
       <button type="submit">
@@ -31,22 +31,34 @@
 
   <section id="notes">
     <ul>
+      {% if notes %}
       {% for note in notes %}
       <li>
         <h2>{{ note.title }}</h2>
         <p>{{ note.text|linebreaks }}</p>
+        <p1>Added in:{{ note.date }}</p>
+        <div class="delete-button">
+          <form action="{% url "delete-note" note.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button >Delete</button>
+          </form>
+        </div>
       </li>
       {% endfor %}
+      {% else %}
+      <h3> You didn't write note yet.</h3>
+      {% endif %}
     </ul>
   </section>
 
   <section id="add-note">
-    <h2>Your Note</h2> 
+    <h4>Add Note</h4> 
     <form action="{% url "month_challenge" month.slug %}" method="POST">
       {% csrf_token %}
         <div>
-        {{ note_form.as_p }}
+        {{ note_form.as_ul }}
         </div>
-      <button type="submit">Add note</button>
+      <button>SAVE</button>
     </section>
 {% endblock %}

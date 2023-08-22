@@ -51,6 +51,98 @@ h2{
 }
 
 #notes {
-    background-color: rgb(98, 129, 129);
-    
+    background-color: #353535;
+    text-align: center;
+    border-radius: 12px;
+    width: 46%;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    max-width: 60rem;
+    max-height: 60rem;
+    color:#0056b3;
 }
+#notes h2{
+    margin: 0;
+}
+
+#notes p{
+    margin: 1rem 2rem;
+    font-size: xx-large;
+    color: aliceblue;
+}
+#notes ul {
+    margin:0;
+    padding: 0;
+}
+#notes li {
+    list-style-type: none;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+}
+
+#notes li:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+#notes h3 {
+    color: rgb(193, 60, 60);
+    font-size: xx-large;
+}
+
+#notes button{
+    background-color: aquamarine;
+    border-radius: 6px;
+    cursor: pointer;
+    border:none;
+    padding: 0.7rem 2rem;
+    margin-top: 0;
+}
+
+#add-note {
+    text-align: center;
+    background-color: #353535;
+    width: 50%;
+    margin: 3rem auto;
+    border-radius: 14px;
+    color: aliceblue;
+    font-weight: bold;
+}
+#add-note h4 {
+    padding-top: 1rem;
+    padding-bottom: 0;
+    font-size: xx-large;
+    margin-bottom: 10px;
+}
+#add-note form div {
+    margin-top: 1px;
+    margin-bottom: 10px;
+    padding-bottom: 0rem;
+    padding-top: 0;
+  }
+
+#add-note button {
+    background-color: aquamarine;
+    border-radius: 6px;
+    cursor: pointer;
+    border:none;
+    padding: 0.7rem 2rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+#add-note button:hover {
+    background-color: #0056b3;
+  }
+
+#add-note label {
+    font-size: large;
+}
+#add-note p {
+    margin-top:0;
+    font-size: large;
+    color: aliceblue;
+}
+#add-note form div h5 {
+    color: aliceblue;
+}
+

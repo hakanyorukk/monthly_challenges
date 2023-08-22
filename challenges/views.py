@@ -31,6 +31,7 @@ class MonthlyChallengeDetailView(View):
     
     def get(self,request, slug):
         month = Months.objects.get(slug=slug)
+
         context = {
             "month":month,
             "save_challenge":self.is_accepted_challenges(request, month.id),
@@ -49,7 +50,7 @@ class MonthlyChallengeDetailView(View):
             note.month = month
             note.save()
             return redirect("month_challenge", slug=slug)
-
+                
         context = {
             "month":month,
             "save_challenge":self.is_accepted_challenges(request, month.id),
@@ -58,6 +59,7 @@ class MonthlyChallengeDetailView(View):
 
         }
         return render(request, "challenges/challenge.html", context)
+    
     
 class AcceptChallenge(View):
     def get(self,request):
@@ -90,6 +92,11 @@ class AcceptChallenge(View):
             accepted_challenges.remove(month_id)
         request.session["accepted_challenges"] = accepted_challenges
         return HttpResponseRedirect("/")
-
-
+        
+def delete_note(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    if request.method == 'POST':
+        note.delete_note1() #from models.py def delete
+        return redirect('index')  
+    return render(request, 'month_challenge', {'note': note})
         

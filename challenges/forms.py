@@ -8,4 +8,5 @@ class NoteForm(forms.ModelForm):
         exclude = ["month"]
         labels = {"title":"Title of the note",
                   "text":"Your notes:",
+                  "date":Note.date
                   }
